@@ -1,0 +1,28 @@
+; ENTRENA ALDEANOS
+(defrule
+    (current-age == dark-age)
+    (can-train villager)
+    (or
+        (civilian-population <= aldeanos-feudal)
+        (or
+            (and
+                (not (can-research ri-loom))
+                (not (research-completed ri-loom))
+            )
+            (and
+                (not (can-research feudal-age))
+                (not (research-completed feudal-age))
+            )
+        )
+    )
+    =>
+    (train villager)
+)
+
+(defrule
+    (current-age != dark-age)
+    (can-train villager)
+    (civilian-population <= aldeanos-totales)
+    =>
+    (train villager)
+)

@@ -1,0 +1,22 @@
+(defrule
+    (civilian-population >= aldeanos-feudal)
+    (can-research feudal-age)
+    (research-completed ri-loom)
+    =>
+    (research feudal-age)
+	(chat-to-allies "Researching Feudal Age")
+)
+
+(defrule
+    (can-research castle-age)
+    =>
+    (research castle-age)
+	(chat-to-allies "Researching Castle Age")
+)
+
+(defrule
+    (can-research imperial-age)
+    =>
+    (research imperial-age)
+	(chat-to-allies "Researching Imperial Age")
+)

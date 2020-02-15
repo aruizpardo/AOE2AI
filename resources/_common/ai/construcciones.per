@@ -1,0 +1,8 @@
+; CONTRUYE CASAS
+(defrule
+    (housing-headroom < 4)
+    (population-headroom > 3)
+    (can-build house)
+    =>
+    (build house)
+)
