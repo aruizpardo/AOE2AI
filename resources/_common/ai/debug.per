@@ -1,0 +1,48 @@
+(defrule
+    (true)
+    =>
+    (chat-to-all "Estoy en modo debug, no abuses de mí")
+    (disable-self)
+)
+
+(defrule
+    (goal militar_strategy jinetes)
+    =>
+    (chat-to-all "Voy a jinetes")
+    (disable-self)
+)
+
+(defrule
+    (goal militar_strategy hombres_de_armas)
+    =>
+    (chat-to-all "Voy a hombres_de_armas")
+    (disable-self)
+)
+
+(defrule
+    (goal militar_strategy arqueros)
+    =>
+    (chat-to-all "Voy a arqueros")
+    (disable-self)
+)
+
+(defrule
+    (up-research-status c: feudal-age >= research-pending)
+    =>
+    (chat-to-all "Subiendo a feudal")
+    (disable-self)
+)
+
+(defrule
+    (up-research-status c: castle-age >= research-pending)
+    =>
+    (chat-to-all "Subiendo a castillos")
+    (disable-self)
+)
+
+(defrule
+    (up-research-status c: imperial-age >= research-pending)
+    =>
+    (chat-to-all "Subiendo a imperial")
+    (disable-self)
+)

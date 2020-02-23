@@ -3,7 +3,7 @@
     (current-age == dark-age)
     (can-train villager)
     (or
-        (civilian-population <= aldeanos-feudal)
+        (civilian-population <= aldeanos-dark)
         (or
             (and
                 (not (can-research ri-loom))
@@ -20,9 +20,135 @@
 )
 
 (defrule
-    (current-age != dark-age)
+    (current-age == feudal-age)
     (can-train villager)
+    (or
+        (civilian-population <= aldeanos-feudal)
+        (or
+            (and
+                (not (can-research ri-wheel-barrow))
+                (not (research-completed ri-wheel-barrow))
+            )
+            (and
+                (not (can-research castle-age))
+                (not (research-completed castle-age))
+            )
+        )
+    )
+    =>
+    (train villager)
+)
+
+(defrule
+    (current-age == castle-age)
+    (can-train villager)
+    (civilian-population <= aldeanos-totales)
+    (or
+        (civilian-population <= aldeanos-feudal)
+        (or
+            (and
+                (not (can-research ri-hand-cart))
+                (not (research-completed ri-hand-cart))
+            )
+            (and
+                (not (can-research imperial-age))
+                (not (research-completed imperial-age))
+            )
+        )
+    )
+    =>
+    (train villager)
+)
+
+(defrule
+    (current-age == imperial-age)
+    (can-train villager) 
     (civilian-population <= aldeanos-totales)
     =>
     (train villager)
+)
+
+; CAZAR JABALÍES
+(defrule
+    (current-age == dark-age)
+    (unit-type-count-total villager >= 11)
+    =>
+    (set-strategic-number sn-maximum-hunt-drop-distance 40)
+    (set-strategic-number sn-enable-boar-hunting 2)
+    (set-strategic-number sn-minimum-boar-lure-group-size 1)
+    (set-strategic-number sn-minimum-boar-hunt-group-size 5)
+    (disable-self)
+)
+
+
+(defrule
+    (current-age == dark-age)
+    (unit-type-count-total villager >= 17)
+    =>
+    (set-strategic-number sn-enable-boar-hunting 2)
+    (set-strategic-number sn-minimum-boar-lure-group-size 1)
+    (set-strategic-number sn-minimum-boar-hunt-group-size 5)
+    (disable-self)
+)
+
+
+; NUMEROS ESTRATEGICOS
+(defrule
+    (current-age == dark-age)
+    =>
+    (set-strategic-number sn-maximum-hunt-drop-distance 45)
+    (set-strategic-number sn-maximum-food-drop-distance 45)
+)
+
+(defrule
+    (current-age == dark-age)
+    (civilian-population <= 6)
+    =>
+    (set-strategic-number sn-percent-civilian-explorers 0)
+    (set-strategic-number sn-percent-civilian-gatherers 50)
+    (set-strategic-number sn-percent-civilian-builders 50)
+    (set-strategic-number sn-food-gatherer-percentage 100)
+    (set-strategic-number sn-wood-gatherer-percentage 0)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (set-strategic-number sn-gold-gatherer-percentage 0)
+)
+
+
+(defrule
+    (current-age == dark-age)
+    (civilian-population > 6)
+    =>
+    (set-strategic-number sn-percent-civilian-explorers 0)
+    (set-strategic-number sn-percent-civilian-gatherers 50)
+    (set-strategic-number sn-percent-civilian-builders 50)
+    (set-strategic-number sn-food-gatherer-percentage 75)
+    (set-strategic-number sn-wood-gatherer-percentage 25)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+    (set-strategic-number sn-gold-gatherer-percentage 0)
+)
+
+
+(defrule
+    (current-age == feudal-age)
+    =>
+    (set-strategic-number sn-percent-civilian-explorers 0)
+    (set-strategic-number sn-percent-civilian-gatherers 50)
+    (set-strategic-number sn-percent-civilian-builders 50)
+    (set-strategic-number sn-food-gatherer-percentage 65)
+    (set-strategic-number sn-wood-gatherer-percentage 25)
+    (set-strategic-number sn-gold-gatherer-percentage 10)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
+)
+
+
+(defrule
+    (current-age == castle-age)
+    =>
+    (set-strategic-number sn-percent-civilian-explorers 0)
+    (set-strategic-number sn-percent-civilian-gatherers 50)
+    (set-strategic-number sn-percent-civilian-builders 50)
+    (set-strategic-number sn-food-gatherer-percentage 50)
+    (set-strategic-number sn-wood-gatherer-percentage 25)
+    (set-strategic-number sn-gold-gatherer-percentage 25)
+    (set-strategic-number sn-stone-gatherer-percentage 0)
 )

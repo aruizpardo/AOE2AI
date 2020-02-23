@@ -1,7 +1,192 @@
 ; DESARROLLA TELAR
+#load-if-defined CHINESE-CIV
 (defrule
     (current-age == dark-age)
     (can-research ri-loom)
     =>
     (research ri-loom)
+    (disable-self)
+)
+#else
+(defrule
+    (current-age == dark-age)
+    (can-research ri-loom)
+    (food-amount > 450)
+    =>
+    (research ri-loom)
+    (disable-self)
+)
+#end-if
+
+; DESARROLLA CARRETILLA
+(defrule
+    (can-research ri-wheel-barrow)
+    =>
+    (research ri-wheel-barrow)
+    (disable-self)
+)
+
+; DESARROLLA CARRO DE MANO
+(defrule
+    (can-research ri-hand-cart)
+    =>
+    (research ri-hand-cart)
+    (disable-self)
+)
+
+; DESARROLLA COLLERA
+(defrule
+    (can-research ri-horse-collar)
+    =>
+    (research ri-horse-collar)
+    (disable-self)
+)
+
+; DESARROLLA ARADO PESADO
+(defrule
+    (can-research ri-heavy-plow)
+    =>
+    (research ri-heavy-plow)
+    (disable-self)
+)
+
+; DESARROLLA ROTACION DE CULTIVOS
+(defrule
+    (can-research ri-crop-rotation)
+    =>
+    (research ri-crop-rotation)
+    (disable-self)
+)
+
+; DESARROLLA PUREZ DE SANGRE
+(defrule
+    (current-age == castle-age)
+    (can-research ri-bloodlines)
+    =>
+    (research ri-bloodlines)
+    (disable-self)
+)
+
+; DESSARROLLA ATAQUE CONTACTO
+(defrule
+    (can-research ri-forging)
+    (or
+        (goal militar_strategy jinetes)
+        (goal militar_strategy hombres_de_armas)
+    )
+    (up-research-status c: castle-age >= research-pending)
+    =>
+    (research ri-forging)
+)
+
+(defrule
+    (can-research ri-iron-casting)
+    (or
+        (goal militar_strategy jinetes)
+        (goal militar_strategy hombres_de_armas)
+    )
+    =>
+    (research ri-iron-casting)
+)
+
+(defrule
+    (can-research ri-blast-furnace)
+    (or
+        (goal militar_strategy jinetes)
+        (goal militar_strategy hombres_de_armas)
+    )
+    =>
+    (research ri-blast-furnace)
+)
+
+; DESSARROLLA ATAQUE DISTANCIA
+(defrule
+    (can-research ri-fletching)
+    (goal militar_strategy arqueros)
+    (up-research-status c: castle-age >= research-pending)
+    =>
+    (research ri-fletching)
+)
+
+(defrule
+    (can-research ri-bodkin-arrow)
+    (goal militar_strategy arqueros)
+    =>
+    (research ri-bodkin-arrow)
+)
+
+(defrule
+    (can-research ri-bracer)
+    (goal militar_strategy arqueros)
+    =>
+    (research ri-bracer)
+)
+
+; DESARROLLA ARMADURA CABALLO
+(defrule
+    (up-research-status c: castle-age >= research-pending)
+    (can-research ri-scale-barding)
+    (goal militar_strategy jinetes)
+    =>
+    (research ri-scale-barding)
+)
+
+(defrule
+    (can-research ri-chain-barding)
+    (goal militar_strategy jinetes)
+    =>
+    (research ri-chain-barding)
+)
+
+(defrule
+    (can-research ri-plate-barding)
+    (goal militar_strategy jinetes)
+    =>
+    (research ri-plate-barding)
+)
+
+; DESARROLLA ARMADURA HOMBRE DE ARMAS
+(defrule
+    (up-research-status c: castle-age >= research-pending)
+    (can-research ri-scale-mail)
+    (goal militar_strategy hombres_de_armas)
+    =>
+    (research ri-scale-mail)
+)
+
+(defrule
+    (can-research ri-chain-mail)
+    (goal militar_strategy hombres_de_armas)
+    =>
+    (research ri-chain-mail)
+)
+
+(defrule
+    (can-research ri-plate-mail)
+    (goal militar_strategy hombres_de_armas)
+    =>
+    (research ri-plate-mail)
+)
+
+; DESARROLLA ARMADURA ARQUEROS
+(defrule
+    (up-research-status c: castle-age >= research-pending)
+    (can-research ri-padded-archer-armor)
+    (goal militar_strategy arqueros)
+    =>
+    (research ri-padded-archer-armor)
+)
+
+(defrule
+    (can-research ri-leather-archer-armor)
+    (goal militar_strategy arqueros)
+    =>
+    (research ri-leather-archer-armor)
+)
+
+(defrule
+    (can-research ri-ring-archer-armor)
+    (goal militar_strategy arqueros)
+    =>
+    (research ri-ring-archer-armor)
 )

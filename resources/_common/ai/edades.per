@@ -1,5 +1,5 @@
 (defrule
-    (civilian-population >= aldeanos-feudal)
+    (civilian-population >= aldeanos-dark)
     (can-research feudal-age)
     (research-completed ri-loom)
     =>
@@ -9,6 +9,7 @@
 
 (defrule
     (can-research castle-age)
+    (civilian-population >= aldeanos-feudal)
     =>
     (research castle-age)
 	(chat-to-allies "Researching Castle Age")

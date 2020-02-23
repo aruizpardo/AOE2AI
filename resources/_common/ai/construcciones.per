@@ -6,3 +6,98 @@
     =>
     (build house)
 )
+
+; CONSTRUCCIONES MOLINO Y MADERERO
+(defrule
+    (current-age == dark-age)
+    (unit-type-count villager > 6)
+    (resource-found food)
+    (can-build mill)
+    =>
+    (set-strategic-number sn-allow-adjacent-dropsites 1)
+    (build mill)
+    (disable-self)
+)
+
+
+(defrule
+    (current-age == dark-age)
+    (unit-type-count villager > 6)
+    (resource-found wood)
+    (can-build lumber-camp)
+    =>
+    (set-strategic-number sn-allow-adjacent-dropsites 1)
+    (build lumber-camp)
+    (disable-self)
+)
+
+
+(defrule
+    (current-age == feudal-age)
+    (resource-found wood)
+    (can-build lumber-camp)
+    =>
+    (set-strategic-number sn-allow-adjacent-dropsites 1)
+    (build lumber-camp)
+    (disable-self)
+)
+
+; CONSTRUYE GRANJAS
+(defrule
+    (building-type-count-total lumber-camp > 0)
+    (unit-type-count-total villager > 15)
+    (idle-farm-count == 0)
+    (can-build farm)
+    =>
+    (build farm)
+)
+
+; CONTRUYE CAMPAMENTO MINERO
+(defrule
+    (current-age == feudal-age)
+    (resource-found gold)
+    (can-build mining-camp)
+    =>
+    (set-strategic-number sn-allow-adjacent-dropsites 0)
+    (build mining-camp)
+    (disable-self)
+)
+
+; CONSTRUYE CUARTEL
+(defrule 
+    (up-research-status c: feudal-age >= research-pending)
+    (can-build barracks)
+    =>
+    (build barracks)
+    (disable-self)
+)
+
+; CONSTRUYE HERRERIA
+(defrule 
+    (current-age == feudal-age)
+    (can-build blacksmith)
+    =>
+    (build blacksmith)
+    (disable-self)
+)
+
+; CONSTRUYE ESTABLO
+(defrule
+    (current-age == feudal-age)
+    (goal militar_strategy jinetes)
+    (can-build stable)
+    =>
+    (build stable)
+    (disable-self)
+)
+
+(defrule
+    (up-research-status c: castle-age >= research-pending)
+    (goal militar_strategy jinetes)
+    (can-build stable)
+    (building-type-count-total stable < 4)
+    =>
+    (build stable)
+)
+
+; 

@@ -1,2 +1,26 @@
-(defconst aldeanos-feudal 24)
-(defconst aldeanos-totales 200)
+(defconst aldeanos-dark 24)
+(defconst aldeanos-feudal 35)
+(defconst aldeanos-totales 100)
+
+; GOALS
+(defconst militar_strategy 1)
+
+; STRATEGY VALUES
+(defconst jinetes 0)
+(defconst hombres_de_armas 1)
+(defconst arqueros 2)
+
+; DEFINE ESTRATEGIA
+(defrule
+    (true)
+    =>
+    (generate-random-number 100)
+    (disable-self)
+)
+
+(defrule
+    (random-number > 1)
+    =>
+    (set-goal militar_strategy jinetes)
+    (disable-self)
+)

@@ -1,0 +1,31 @@
+(defrule
+    (can-train knight-line)
+    (goal militar_strategy jinetes)
+    =>
+    (train knight-line)
+)
+
+
+; EXPLORADORES
+(defrule
+    (current-age == dark-age)
+    =>
+    (set-strategic-number sn-total-number-explorers 1)
+    (set-strategic-number sn-initial-exploration-required 0)
+    (set-strategic-number sn-number-explore-groups 1)
+)
+
+
+; ATAQUE
+(defrule
+    (true)
+    =>
+    (set-strategic-number sn-minimum-attack-group-size 6)
+	(set-strategic-number sn-maximum-attack-group-size 20)
+    (set-strategic-number sn-number-attack-groups 5)
+	(set-strategic-number sn-percent-attack-soldiers 90)
+	(set-strategic-number sn-percent-enemy-sighted-response 50)
+    (set-strategic-number sn-minimum-defend-group-size 1)
+    (set-strategic-number sn-maximum-attack-group-size 7)
+    (set-strategic-number sn-number-defend-groups 2)
+)
